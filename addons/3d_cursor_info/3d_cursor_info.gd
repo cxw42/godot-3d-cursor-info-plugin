@@ -1,12 +1,13 @@
 @tool
 extends EditorPlugin
 
+var dock: Control
 
 func _enter_tree():
-    # Initialization of the plugin goes here.
-    pass
+    dock = preload("res://addons/3d_cursor_info/ui.tscn").instantiate()
+    add_control_to_dock(EditorPlugin.DOCK_SLOT_RIGHT_UR, dock)
 
 
 func _exit_tree():
-    # Clean-up of the plugin goes here.
-    pass
+    remove_control_from_docks(dock)
+    dock.free()
